@@ -6,20 +6,18 @@ const ProjectSchema = new Schema({
         type : 'string',
         required : true
     },
-    description : {
+    phone : {
         type : 'string',
         required : true
     },
-    member : [
-        {
-            type : Schema.Types.ObjectId,
-            ref : 'members'
-        }
-    ],
+    birthday : {
+        type : 'number',
+        required : true
+    },
  
 
 },{
     autoCreate : true
 })
 
-module.exports = mongoose.model('projects',ProjectSchema);
+module.exports = mongoose.model('members',ProjectSchema);

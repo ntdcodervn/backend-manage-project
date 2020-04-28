@@ -11,5 +11,7 @@ router.get('/getAllProject',projectController.GetAllProject);
 
 router.post('/updateProject',projectController.UpdateProject);
 
+router.get('/getDetailProjectById/:id',projectController.GetDetailProjectById);
+
 
 module.exports = router;

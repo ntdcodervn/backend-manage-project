@@ -83,7 +83,21 @@ const DeleteProjectById = async (req,res) => {
 
 const GetAllProject = async (req,res) => { 
     try {
-        let listProject = await ProjectModel.find();
+        let listProject = await ProjectModel.find().populate('members');
+        res.json({
+            status : 200,
+            data : listProject
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(502).send(' Bad Gateway Error')
+    }
+}
+
+const GetDetailProjectById = async (req,res) => { 
+    try {
+        let {id} = req.params;
+        let listProject = await ProjectModel.findById(id).populate('members');
         res.json({
             status : 200,
             data : listProject
@@ -99,5 +113,6 @@ module.exports = {
     AddNewProject,
     DeleteProjectById,
     GetAllProject,
-    UpdateProject
+    UpdateProject,
+    GetDetailProjectById
 }

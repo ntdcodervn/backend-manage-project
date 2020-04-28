@@ -7,7 +7,7 @@
     "start": "node ./src/index.js",
     "server": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rmnode" : "rm -rf node_modules/"
+    "rmnode": "rm -rf node_modules/"
   },
   "author": "",
   "license": "ISC",
