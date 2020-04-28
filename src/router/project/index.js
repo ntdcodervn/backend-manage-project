@@ -13,5 +13,8 @@ router.post('/updateProject',projectController.UpdateProject);
 
 router.get('/getDetailProjectById/:id',projectController.GetDetailProjectById);
 
+router.post('/assignMemberToProject',projectController.AssignMemberToProject);
+
+router.post('/removeFromProject',projectController.RemoveMemberFromProject);
 
 module.exports = router;

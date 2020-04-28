@@ -10,6 +10,7 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 
 app.use('/api/projects',require('./router/project/index'));
+app.use('/api/members',require('./router/member/index'));
 
 app.get('/', function(req, res){
     res.send('Welcome to Thanh Duy server');

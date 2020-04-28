@@ -108,11 +108,76 @@ const GetDetailProjectById = async (req,res) => {
     }
 }
 
+const  AssignMemberToProject = async (req,res) => { 
+    try {
+        let {idProject,idMember} = req.body;
+        let currentProject =  await ProjectModel.findById(idProject);
+
+        if(currentProject) {
+            let newMember = currentProject.member;
+            let checkMemberExist = newMember.filter((value) => value == idMember);
+
+            if(checkMemberExist.length == 0) {
+                newMember.push(idMember);
+                let listProject = await ProjectModel.findByIdAndUpdate(idProject,{member : newMember });
+                res.json({
+                    status : 200,
+                    data : 'update success'
+                })
+            }else{
+                res.json({
+                    status : 201,
+                    data : 'Members have been added in the project'
+                })
+            }
+            
+        }else {
+            res.json({
+                status : 204,
+                msg : 'Project not found '
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(502).send(' Bad Gateway Error')
+    }
+}
+
+
+const RemoveMemberFromProject = async (req,res) => {
+    try {
+        let {idProject,idMember} = req.body;
+        let currentProject =  await ProjectModel.findById(idProject);
+
+        if(currentProject) {
+            let newMember = currentProject.member;
+            let removeMember = newMember.filter((value) => value != idMember);
+
+            let listProject = await ProjectModel.findByIdAndUpdate(idProject,{member : removeMember });
+            res.json({
+                status : 200,
+                data : 'remove success'
+            })
+        }else {
+            res.json({
+                status : 204,
+                msg : 'Project not found '
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(502).send(' Bad Gateway Error')
+    }
+}
+
+
 
 module.exports = {
     AddNewProject,
     DeleteProjectById,
     GetAllProject,
     UpdateProject,
-    GetDetailProjectById
+    GetDetailProjectById,
+    AssignMemberToProject,
+    RemoveMemberFromProject
 }
