@@ -34,9 +34,9 @@ const AddNewProject = async (req,res) => {
 
 const UpdateProject = async (req,res) => {
     try {
-                let {id,description} = req.body;
+                let {id,name,description} = req.body;
          
-                let updateProject = await ProjectModel.findByIdAndUpdate(id,{description});
+                let updateProject = await ProjectModel.findByIdAndUpdate(id,{name,description});
 
                 console.log(updateProject);
                 
@@ -83,7 +83,7 @@ const DeleteProjectById = async (req,res) => {
 
 const GetAllProject = async (req,res) => { 
     try {
-        let listProject = await ProjectModel.find().populate('members');
+        let listProject = await ProjectModel.find().populate('member');
         res.json({
             status : 200,
             data : listProject
@@ -97,7 +97,7 @@ const GetAllProject = async (req,res) => {
 const GetDetailProjectById = async (req,res) => { 
     try {
         let {id} = req.params;
-        let listProject = await ProjectModel.findById(id).populate('members');
+        let listProject = await ProjectModel.findById(id).populate('member');
         res.json({
             status : 200,
             data : listProject

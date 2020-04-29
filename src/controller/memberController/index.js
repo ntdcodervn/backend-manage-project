@@ -34,9 +34,9 @@ const AddNewMember = async (req,res) => {
 
 const UpdateMember = async (req,res) => {
     try {
-                let {id,phone,birthday} = req.body;
+                let {id,name,phone,birthday} = req.body;
          
-                let updateMember = await MemberModel.findByIdAndUpdate(id,{phone,birthday});
+                let updateMember = await MemberModel.findByIdAndUpdate(id,{name,phone,birthday});
 
                 console.log(updateMember);
                 
